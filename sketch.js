@@ -1,6 +1,3 @@
-var helicopterIMG, helicopterSprite, packageSprite,packageIMG;
-var packageBody,ground;
-
 const Engine = Matter.Engine;
 const World = Matter.World;
 const Bodies = Matter.Bodies;
@@ -10,13 +7,13 @@ var redZone;
 var redZone2;
 var redZone3;
 
-var helicopterSound;
+var helicopterIMG, helicopterSprite, packageSprite,packageIMG;
+var packageBody,ground;
 
 function preload()
 {
 	helicopterIMG = loadImage("helicopter.png");
 	packageIMG = loadImage("package.png");
-	helicopterSound = loadSound("HelicopterSound.mp3");
 }
 
 function setup() {
@@ -34,15 +31,10 @@ function setup() {
 	groundSprite=createSprite(width/2, height-35, width,10);
 	groundSprite.shapeColor=color(255);
 
-	redZone = createSprite(400,650,200,20);
-	redZone.shapeColor = "red";
-
-	redZone2 = createSprite(310,600,20,80);
-	redZone2.shapeColor = "red";
-
-	redZone3 = createSprite(490,600,20,80);
-	redZone3.shapeColor = "red";
-
+	redZone = new Holder(400,680,200,10,options);
+	redZone2 = new Holder(360,680,10,100,opptions);
+	redZone3 = new Holder(440,680,10,100,options); 
+	
 	engine = Engine.create();
 	world = engine.world;
 
@@ -67,6 +59,9 @@ function draw() {
   packageSprite.collide(redZone2);
   packageSprite.collide(redZone3);
   
+  redZone.display();
+  redZone2.display();
+  redZone3.display();
   drawSprites();
  
 }
